@@ -1,0 +1,36 @@
+At the time we start writing the code, we define 3 variables :
+
+int sensorPin = A0; 
+- The first one defines the analog pin of the Arduino
+
+int sensorValue;  
+- The second defines the analog value of the sensor read by the Arduino
+
+int limit = 300; 
+The third defines a limit ( in this case if the sensorValue is larger than the limit, then a LED will light up )
+----------------------------------------------------------------------------------------------------------------
+void setup() {
+Serial.begin(9600);
+pinMode(13, OUTPUT);
+}
+After, we initialize the serial monitor by indicating the number of baud ( here 9600 ) and also the thirteenth pin of the Arduino ( LED pin ) by indicating a current output.
+
+-----------------------------------------------------------------------------------------------------------------
+
+void loop() {  
+sensorValue = analogRead(sensorPin); 
+We define the sensorValue as being the value read by the Arduino.
+
+Serial.println("Analog Value : ");
+Serial.println(sensorValue);
+We display the sensorValue on the serial monitor.
+
+if (sensorValue<limit) {
+digitalWrite(13, HIGH); 
+}
+else {
+digitalWrite(13, LOW);
+ }
+delay(1000); 
+}
+This part of code allows to light up a LED if the sensorValue is smaller than the limit. Otherwise, the LED stays off.
